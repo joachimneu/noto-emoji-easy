@@ -203,6 +203,8 @@ if __name__ == "__main__":
         for alias in aliases:
             context["emojinames"].append((page, alias))
 
+        context["emojinames"].append((page, get_unicode(unicode_raw)))
+
     context["emojinames"].sort(key=itemgetter(0, 1))
     context["emojinames_mapping"] = sorted(context["emojinames_mapping"].items())
 
