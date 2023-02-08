@@ -128,18 +128,21 @@ def convert_svg_to_pdf():
     inkscape_call = []
 
     targets = set()
-    for _filename in os.listdir(svg_source_folder):
+    for (_filename, source_folder) in [ (fn, svg_source_folder) for fn in os.listdir(svg_source_folder) ] + [ (fn, svg_source_folder2) for fn in os.listdir(svg_source_folder2) ]:
         if _filename[-4:] != ".svg":
             continue
+
         names.add(_filename[:-4])
         tar = f"{os.path.join(pdf_temp_folder, _filename[:-4])}.pdf"
+
         inkscape_call.append(
-            f"file-open:{os.path.join(svg_source_folder, _filename)};"
+            f"file-open:{os.path.join(source_folder, _filename)};"
             "export-type:pdf;"
             f"export-filename:{tar};"
             "export-do;"
         )
         targets.add(tar)
+
     inkscape_call.append("\n")
 
     subprocess.run(
@@ -184,17 +187,18 @@ if __name__ == "__main__":
 
     context["emojinames"] = []
     context["emojinames_mapping"] = {}
-    
+
     for index, unicode in enumerate(filenames):
         page = index + 1
+
         unicode_raw = unicode
         assert unicode.startswith("emoji_u")
         unicode = unicode[len("emoji_u"):].replace("_", "-")
+
         aliases = [unicode]
         if get_unicode(unicode_raw) in emoji_aliases:
             aliases.extend(emoji_aliases[get_unicode(unicode_raw)])
-        if len(aliases) == 1:
-            continue
+            
         context["emojinames_mapping"][unicode] = aliases
         for alias in aliases:
             context["emojinames"].append((page, alias))

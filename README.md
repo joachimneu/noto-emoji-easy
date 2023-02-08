@@ -4,7 +4,6 @@ This repository contains the LaTeX package [`noto-emoji-easy`](src/noto-emoji-ea
 
 **This repository is a port of Jost Rossel's excellent [`twemojis`](https://gitlab.com/rossel.jost/latex-twemojis) package from Twitter's Twemojis to Google's Noto Emojis.**
 
-
 # Development
 
 ## Building
@@ -18,7 +17,6 @@ To create the ZIP file that will eventually hopefully be uploaded to CTAN, simpl
 The resulting ZIP is in the `./dist` folder, the contents of the ZIP files are in sibling-folders.
 The `.sty` and compiled documentation can be found in `./packages`.
 Both `./dist` and `./packages` are ignored by Git.
-
 
 # Licenses
 
@@ -41,6 +39,7 @@ https://github.com/googlefonts/noto-emoji
 The LaTeX package is licensed under the LPPL 1.3 or later License.
 
 > Copyright (c) 2021-2022 Jost Rossel, 2023 Joachim Neu
+>
 > This file may be distributed and/or modified under the
 > conditions of the LaTeX Project Public License, either
 > version 1.3 of this license or (at your option) any later

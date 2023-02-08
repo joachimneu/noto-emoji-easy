@@ -12,9 +12,10 @@ This package really is intended to be used within Ti*k*Z images.
 
 Try [these install steps](https://tex.stackexchange.com/questions/73016/how-do-i-install-an-individual-package-on-a-linux-system).
 The TL;DR for the manual installation (if everything else fails) is:
+- Build the package from the repository, so that the `dist` and `packages` folders are populated (not included in the repo).
 - Run `kpsewhich -var-value TEXMFLOCAL` and `kpsewhich -var-value TEXMFHOME` and check which of the resulting directories is populated.
   Lets call the resulting directory `<base dir>`.
-- Create the directory `<base dir>/tex/latex/noto-emoji-easy` and move the `.sty` file and the folder `pdf-noto-emoji-easy` there.
+- Create the directory `<base dir>/tex/latex/noto-emoji-easy` and copy the files `noto-emoji-easy.sty` and `all-noto-emoji-easy.pdf` from `packages` there.
 - Run `mktexlsr` (you probably need root for that).
 - If something doesn't work, read the long version linked above (Method 3).
 

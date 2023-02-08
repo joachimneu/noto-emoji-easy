@@ -19,6 +19,7 @@ https://github.com/googlefonts/noto-emoji
 The LaTeX package is licensed under the LPPL 1.3 or later License.
 
 > Copyright (c) 2021-2022 Jost Rossel, 2023 Joachim Neu
+>
 > This file may be distributed and/or modified under the
 > conditions of the LaTeX Project Public License, either
 > version 1.3 of this license or (at your option) any later
