@@ -1,0 +1,214 @@
+% \iffalse meta-comment
+%
+% Copyright (C) <<year>> <<author>>
+% -------------------------------------------------------
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+%    http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of LaTeX 
+% version 2005/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<*documentation>
+\documentclass{ltxdoc}
+\usepackage{noto-emoji-easy}
+\usepackage{doc}
+\usepackage{listings}
+\usepackage[hidelinks]{hyperref}
+\usepackage{textcomp}
+\usepackage{verbatim}
+\usepackage{longtable}
+\lstset{basicstyle=\ttfamily,commentstyle=\color{white},language=TeX,breaklines=true,breakatwhitespace}
+
+\EnableCrossrefs
+\begin{document}
+\DocInput{noto-emoji-easy.dtx}
+\end{document}
+%</documentation>
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{noto-emoji-easy}[<< year >>/<< '%02d'|format(month) >>/<< '%02d'|format(day) >> v<< version >> LaTeX noto-emoji-easy (Noto Emoji v<< original_version >>)]
+\RequirePackage{tikz}
+\RequirePackage{ifthen}
+% \fi
+%
+% \title{noto-emoji-easy v<< version >> (Noto Emoji v<< original_version >>)}
+% \author{<< author >>}
+%
+% \maketitle
+%
+% \begin{abstract}\noindent
+% Simple wrapper which allows to use Google's open source Noto Emoji emojis through \LaTeX\ commands.
+% This works on images, so no fancy unicode-font stuff is needed and it \textit{should work}\textsuperscript{\textnotoemoji{trade mark}} on every (PDF-capable) \LaTeX\ installation.
+% \end{abstract}
+%
+% \section{Available Commands}
+%
+% \noindent
+% \DescribeMacro{\notoemoji} basically includes a PDF graphic of the emoji via |\includegraphics|.
+% Per default |\includegraphics| is given the parameter |height=\notoemojiDefaultHeight|, where |\notoemojiDefaultHeight| is set to |\fontcharht\font`X| (i.e.\ the height of the letter X).
+% |\notoemoji{smile}| with default settings looks like this: \notoemoji{smile}.
+%
+% Use |\setlength{\notoemojiDefaultHeight}{...}| to change the default hight, this effects all |\notoemoji| usages.
+% \setlength{\notoemojiDefaultHeight}{0.6em}
+% For example, with the height set to |0.6em| |\notoemoji{smile}| looks like this: \notoemoji{smile}
+% \setlength{\notoemojiDefaultHeight}{\fontcharht\font`X}
+%
+% The look of a single emoji can be changed via an optional parameter (everything |\includegraphics| allows works).
+% Example \notoemoji[height=\notoemojiDefaultHeight, angle=45, trim={1mm 1mm 1mm 1mm}, clip]{smile}: |\notoemoji[height=\default| |Height, angle=45, trim={1mm 1mm 1mm 1mm}, clip]{smile}|.\footnote{|defaultHeight| needs to be explicitly set, as the usage of the optional parameter overwrites the default one.}
+%
+% |\notoemoji| works perfectly fine in a Tikz picture:
+% \vspace*{.5em}
+% \begin{center}
+%     \begin{tikzpicture}
+%         \node[scale=7,inner sep=0pt] (a) at (0,0) {\notoemoji{woman technologist: medium-light skin tone}};
+%         \node at (0.2,-1.2) {Alice};
+%         \node[scale=7,inner sep=0pt] (b) at (8,0) {\notoemoji{man technologist: medium-dark skin tone}};
+%         \node at (8.2,-1.2) {Bob};
+%         \draw[-latex] (a) -- (b);
+%     \end{tikzpicture}
+% \end{center}
+%
+% The ``Alice'' node in the example above is created with
+% \begin{center}
+% |\node[scale=7,inner sep=0pt] (a) at (0,0)| |{\notoemoji{woman technologist: medium-light skin tone}};|.
+% \end{center}
+%
+% \vspace*{.5em}
+% \noindent
+% \DescribeMacro{\textnotoemoji} adapts itself to the text height (|\notoemoji| does not).
+% Hence, |\textnotoemoji{smile}| looks like \textnotoemoji{smile}, but |{\Large\textnotoemoji{smile}}| looks like {\Large\textnotoemoji{smile}}.
+% It does not take optional parameters.
+%
+% \section{Finding Emoji Names}
+%
+% There are three ways to get the emoji you want.
+% If you use a string---as a parameter for either command---that does not match any defined one, the command will be ignored.
+%
+% \begin{enumerate}
+% \item The unicode value
+%     \begin{itemize}
+%         \item in hexadecimal,
+%         \item with small letters,
+%         \item and without leading zeros.
+%     \end{itemize}
+%     If the emojis use combined values (e.g., for skin color) separate them via |-|.
+%
+%     The value can be found, for example, \href{https://unicode-table.com}{here} (not every unicode character is supported, only those you typically find on an ``Emoji Keyboard'').
+% \item The official unicode CLDR names of the emoji. These can also be found \href{https://unicode-table.com}{here} or \href{https://github.com/SamCB/Emoji2Text/blob/master/emoji2text/emoji-test.txt}{here}.
+% \item The easiest names to remember (used by Signal, WhatsApp, Discord, etc) like |:smile:| can also be used, but only support a subset (e.g.~no variations like skin colors).
+%     These can be found, for example, \href{https://www.webfx.com/tools/emoji-cheat-sheet/}{here} (without the |:|).
+% \end{enumerate}
+%
+% All available emojis and their aliases are listed at the end of this document.
+%
+% \paragraph{Examples.}
+%
+% \begin{itemize}
+%     \item[\notoemoji{1f483}] |\notoemoji{1f483}|
+%     \item[\notoemoji{woman dancing}] |\notoemoji{woman dancing}|
+%     \item[\notoemoji{1f604}] |\notoemoji{1f604}|
+%     \item[\notoemoji{grinning face with smiling eyes}] |\notoemoji{grinning face with smiling eyes}|
+%     \item[\notoemoji{smile}] |\notoemoji{smile}|
+%     \item[\notoemoji{1f487-1f3fb-200d-2642}] |\notoemoji{1f487-1f3fb-200d-2642}|
+%     \item[\notoemoji{man getting haircut: light skin tone}] |\notoemoji{man getting haircut: light skin tone}|
+%     \item[\notoemoji{1f608}] |\notoemoji{1f608}|
+%     \item[\notoemoji{smiling face with horns}] |\notoemoji{smiling face with horns}|
+%     \item[\notoemoji{smiling_imp}] |\notoemoji{smiling_imp}|
+% \end{itemize}
+%
+<% for line in license_text -%>
+% << line >>
+<% endfor %>
+% \clearpage
+% \section{List of Emojis and their Aliases}
+% \begin{longtable}{cp{0.9\textwidth}}
+<% for unicode, aliases in emojinames_mapping -%>
+% \raisebox{-2em}{\notoemoji[height=3em]{<<unicode>>}} & <% for alias in aliases %> |<<alias>>|\newline<% endfor -%>\\%
+<% endfor %>
+% \end{longtable}
+%
+% \StopEventually{}
+% \clearpage
+% \section{Implementation}
+
+% \begin{macro}{\notoemojiDefaultHeight}
+% Defines the length |notoemojiDefaultHeight| as the height of the character ``X''.
+% To change the length in the document use, e.g., |\setlength{\notoemojiDefaultHeight}{2em}|.
+%    \begin{macrocode}
+\newlength{\notoemojiDefaultHeight}
+\AtBeginDocument{\setlength{\notoemojiDefaultHeight}{\fontcharht\font`X}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{PDF Group Warning}
+% As the emojis are PDF-based and use transparency, they include groups.
+% I was not able to change the inkscape export so that that does not happen.
+% Hence, pdflatex throws a warning about multiple groups on one PDF page.
+% This package disables said warning: |\pdfsuppresswarningpagegroup=1| as it is of no concern for the inputted emojis.
+% It \emph{could} happen, that a PDF you input is faulty and you don't notice due to said suppression.
+% You can enable the warning with |\pdfsuppresswarningpagegroup=0|.
+%    \begin{macrocode}
+\begingroup\expandafter\expandafter\expandafter\endgroup
+\expandafter\ifx\csname pdfsuppresswarningpagegroup\endcsname\relax
+\else
+  \pdfsuppresswarningpagegroup=1\relax
+\fi
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\notoemoji}
+% Includes the given Noto Emoji emoji as an image in place.
+%    \begin{macrocode}
+\newcommand{\notoemoji}[2][height=\notoemojiDefaultHeight]{%
+  \ifcsname notoemoji #2\endcsname%
+    \csname notoemoji #2\endcsname{#1}%
+  \else%
+    \PackageError{noto-emoji-easy}%
+      {Undefined emoji `#2'}%
+      {See section 2 (``Finding Emoji Names'') of the noto-emoji-easy package
+      documentation, for ways to get the emoji you want.}%
+  \fi%
+}%
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\textnotoemoji}
+% Uses the |\notoemoji| command so that it adapts to the fontsize.
+%    \begin{macrocode}
+\newcommand{\textnotoemoji}[1]{%
+  \raisebox{-.1ex}{\notoemoji[height=1.1\fontcharht\font`X]{#1}}%
+}%
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\defineNotoEmoji}
+% Defines an internal |\notoemoji ...| command that holds the reference to the actual image.
+% Needs the page number and alias under which to find it.
+%    \begin{macrocode}
+\newcommand{\defineNotoEmoji}[2]{%
+\expandafter\newcommand\csname notoemoji #2\endcsname[1]{%
+  \includegraphics[page=#1, ##1]{all-noto-emoji-easy.pdf}}%
+}%
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{comment} % not really relevant in the PDF
+% \begin{macro}{Define Noto Emoji emojis}
+% This defines all Noto Emoji emojis this package provides.
+%    \begin{macrocode}
+<% for (page, alias) in emojinames -%>
+\defineNotoEmoji{<<page>>}{<<alias>>}%
+<% endfor %>
+%    \end{macrocode}
+% \end{macro}
+% \end{comment}
+
+% \Finale
+\endinput
