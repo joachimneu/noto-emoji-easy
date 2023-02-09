@@ -14,9 +14,13 @@ You also need `inkscape` and `pdfunite` (poppler), and the official [`noto-emoji
 This project uses [poetry](https://python-poetry.org/), so either use that or install the packages from the `pyproject.toml` manually.
 
 To create the ZIP file that will eventually hopefully be uploaded to CTAN, simply run `make <project-name>`.
-The resulting ZIP is in the `./dist` folder, the contents of the ZIP files are in sibling-folders.
+The resulting ZIP is in the `./dist` folder, the content of the ZIP file is in a sibling-folder.
 The `.sty` and compiled documentation can be found in `./packages`.
 Both `./dist` and `./packages` are ignored by Git.
+
+## Installation/Use
+
+See `README.md` of the built `noto-emoji-easy` package for how to install the package system-wide or user-wide, or how to use the package for a specific LaTeX project.
 
 # Licenses
 
