@@ -31,6 +31,8 @@ The TL;DR for the manual installation (if everything else fails) is:
 - Run `mktexlsr` (you probably need root for that).
 - If something doesn't work, read the long version linked above (Method 3).
 
+Alternatively, the package can be included directly in a LaTeX project by copying the files `noto-emoji-easy.sty` and `all-noto-emoji-easy.pdf` next to the `.tex` file that contains `\usepackage{noto-emoji-easy}`.
+
 ## Problems/TODOs
 
 - Currently the emojis are not text-selectable, that might change in future versions.
